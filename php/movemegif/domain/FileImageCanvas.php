@@ -19,23 +19,30 @@ class FileImageCanvas extends GdCanvas
         if (preg_match('#\.(gif|png|jpg|jpeg)$#', $filePath, $matches)) {
 
             $ext = $matches[1];
+			
+	$ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $filePath); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // good edit, thanks!
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1); // also, this seems wise considering output is image.
+    $data = curl_exec($ch);
+    curl_close($ch);
 
             switch ($ext) {
 
                 case 'gif':
-                    $this->resource = imagecreatefromgif($filePath);
+                    $this->resource = imagecreatefromstring($data);
                     $this->transparencyColor = $this->locateTransparentColor($this->resource);
                     break;
 
                 case 'png':
-                    $this->resource = imagecreatefrompng($filePath);
+                    $this->resource = imagecreatefromstring($data);
                     imagetruecolortopalette($this->resource, true, 256);
                     $this->transparencyColor = $this->locateTransparentColor($this->resource);
                     break;
 
                 case 'jpg':
                 case 'jpeg':
-                    $this->resource = imagecreatefromjpeg($filePath);
+                    $this->resource = imagecreatefromstring($data);
                     imagetruecolortopalette($this->resource, true, 256);
                     break;
 
