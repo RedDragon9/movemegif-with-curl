@@ -1,4 +1,4 @@
-# movemegif
+# movemegif with Curl support
 
 An Animated GIF creation library in PHP and Curl.
 "Added support for Curl"
