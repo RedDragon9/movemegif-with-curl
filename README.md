@@ -2,6 +2,8 @@
 
 An Animated GIF creation library in pure PHP.
 
+"Added support for Curl"
+
 This library focuses on the use of GD in the creation of animated gif images.
 
 * Requires PHP 5.3 or higher.
