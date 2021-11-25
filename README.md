@@ -1,13 +1,13 @@
 # movemegif
 
-An Animated GIF creation library in pure PHP.
-
+An Animated GIF creation library in PHP and Curl.
 "Added support for Curl"
 
 This library focuses on the use of GD in the creation of animated gif images.
 
 * Requires PHP 5.3 or higher.
 * Requires GD library (use `apt-get install php5-gd` or similar, to install)
+* Requires Curl
 
 ## Features
 
